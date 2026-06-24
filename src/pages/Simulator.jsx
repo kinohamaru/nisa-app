@@ -58,14 +58,26 @@ export default function Simulator() {
             毎月の積立額
             <span className="ml-2 text-emerald-600 font-bold text-base">{formatYen(monthly)}</span>
           </label>
-          <input
-            type="range" min={1000} max={100000} step={1000}
-            value={monthly}
-            onChange={e => setMonthly(Number(e.target.value))}
-            className="w-full accent-emerald-500"
-          />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
-            <span>¥1,000</span><span>¥100,000</span>
+          <div className="flex items-center gap-3 mb-2">
+            <button
+              type="button"
+              onClick={() => setMonthly(v => Math.max(1000, v - 1000))}
+              className="w-9 h-9 rounded-xl bg-gray-100 text-gray-600 font-bold text-lg hover:bg-gray-200 transition-colors shrink-0"
+            >－</button>
+            <input
+              type="range" min={1000} max={500000} step={1000}
+              value={monthly}
+              onChange={e => setMonthly(Number(e.target.value))}
+              className="flex-1 accent-emerald-500"
+            />
+            <button
+              type="button"
+              onClick={() => setMonthly(v => Math.min(500000, v + 1000))}
+              className="w-9 h-9 rounded-xl bg-emerald-500 text-white font-bold text-lg hover:bg-emerald-600 transition-colors shrink-0"
+            >＋</button>
+          </div>
+          <div className="flex justify-between text-xs text-gray-400">
+            <span>¥1,000</span><span>¥500,000</span>
           </div>
         </div>
 
